@@ -10,7 +10,7 @@
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!-- Include required permissions for Google Mobile Ads to run. -->
+    <!-- Include required permissions for Google Mobile Ads to run.  Raju -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
