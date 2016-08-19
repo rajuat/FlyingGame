@@ -31,7 +31,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(NavigationActivity.EXTRA_MESSAGE);
         TextView textView = new TextView(this);
         textView.setTextSize(80);
         textView.setText(message);

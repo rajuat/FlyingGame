@@ -14,11 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.andriod.myapplication.alphabet.AlphabetActivity;
+import com.andriod.myapplication.draw.PathRendererActivity;
+import com.andriod.myapplication.game.GameActivity;
+import com.andriod.myapplication.gesture.GestureActivity;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,9 +27,9 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,13 +51,12 @@ public class NavigationActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getAds();
+        //getAds();
 
     }
 
     @Override
     public void onBackPressed() {
-        System.out.println("onBackPressed");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -68,7 +67,6 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        System.out.println("onCreateOptionsMenu");
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);
         return true;
@@ -76,7 +74,6 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println("onOptionsItemSelected");
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -95,20 +92,21 @@ public class NavigationActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        System.out.println("onNavigationItemSelected");
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
+            Intent intent = new Intent(this, GameActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            System.out.println("onNavigationItemSelected gallery");
-            Intent intent = new Intent(this, DrawActivity.class);
+            Intent intent = new Intent(this, AlphabetActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent intent = new Intent(this, PathRendererActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
-
+            Intent intent = new Intent(this, GestureActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -122,7 +120,6 @@ public class NavigationActivity extends AppCompatActivity
 
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
-        System.out.println("sendMessage");
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
@@ -130,17 +127,11 @@ public class NavigationActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    private void getAds(){
-        String TOAST_TEXT = "Test ads are being shown. "
-                + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
+    /*private void getAds(){
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544/6300978111");
         // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
+        AdView adView = (AdView) findViewById(R.id.adViewN);
+        AdRequest adRequest = new AdRequest.Builder().setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
-
-        // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
-        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
-    }
+    }*/
 }
